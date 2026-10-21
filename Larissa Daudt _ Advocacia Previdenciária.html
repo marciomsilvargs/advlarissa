@@ -30,6 +30,10 @@
   padding-bottom:env(safe-area-inset-bottom,0px);
 }
 html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + env(safe-area-inset-top,0px) + 8px);-webkit-text-size-adjust:100%}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+.lenis.lenis-stopped{overflow:hidden}
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0;background:var(--marfim);color:var(--texto);font:400 1rem/1.7 var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 img,svg{max-width:100%}
@@ -173,9 +177,8 @@ section{position:relative}
 
 /* Sobre */
 .about{display:grid;gap:36px;align-items:center}
-.portrait{width:min(100%,360px);justify-self:center;aspect-ratio:4/5;position:relative}
-.portrait::before{content:"";position:absolute;inset:14px -14px -14px 14px;border:1px solid var(--rose);z-index:0}
-.portrait img{position:absolute;inset:0;z-index:1;display:block;width:100%;height:100%;object-fit:cover;object-position:center 25%;background:var(--bege)}
+.portrait{width:min(100%,360px);justify-self:center;aspect-ratio:4/5;position:relative;border-radius:3px;overflow:hidden;box-shadow:0 12px 32px rgba(107,33,31,0.08);border:1px solid rgba(107,33,31,0.18)}
+.portrait img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 25%;background:var(--bege)}
 .name{font-size:clamp(2.2rem,6vw,3.1rem);margin-bottom:6px}
 .role{font:500 1.05rem/1.4 var(--sans);color:var(--grafite);margin-bottom:4px}
 .oab{display:inline-block;margin:6px 0 20px;padding:5px 12px;border:1px solid var(--bege);background:var(--branco);font-size:.88rem;font-weight:500;color:var(--bordo)}
@@ -550,6 +553,7 @@ html.js .rv.in{opacity:1;transform:none}
 
 <div class="m-cta" id="m-cta"><a class="btn js-wa" href="#contato">Fale com a advogada</a></div>
 
+<script src="assets/lenis.min.js"></script>
 <script>
 /* ===== CONFIGURAÇÃO EDITÁVEL ===== */
 var CONFIG = {
@@ -595,9 +599,51 @@ var CONFIG = {
     rv.forEach(function(el){ io.observe(el); });
   } else { rv.forEach(function(el){ el.classList.add('in'); }); }
 
+  /* Suavização de rolagem (Lenis + fallback fluído em âncoras) */
+  var lenis = null;
+  if(typeof Lenis !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    try {
+      lenis = new Lenis({
+        duration: 1.35,
+        easing: function(t){ return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 0.95,
+        touchMultiplier: 1.5,
+        infinite: false
+      });
+      function raf(time){
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+    } catch(err){}
+  }
+
+  /* Navegação suave em âncoras internas */
+  d.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var href = this.getAttribute('href');
+      if(!href || href === '#' || href.length < 2) return;
+      var target = d.querySelector(href);
+      if(target){
+        e.preventDefault();
+        var offset = window.innerWidth >= 980 ? 84 : 72;
+        if(lenis){
+          lenis.scrollTo(target, { offset: -offset, duration: 1.3 });
+        } else {
+          var y = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+        if(history.pushState) history.pushState(null, null, href);
+      }
+    });
+  });
+
   /* Barra de contato móvel: aparece após o hero e some junto ao CTA final */
   var bar=d.getElementById('m-cta'), hero=d.getElementById('inicio'), fin=d.getElementById('contato');
-  if('IntersectionObserver' in window){
+  if('IntersectionObserver' in window && bar && hero && fin){
     var st={h:true,f:false};
     function upd(){ bar.classList.toggle('show',!st.h&&!st.f); }
     new IntersectionObserver(function(e){ st.h=e[0].isIntersecting; upd(); }).observe(hero);
