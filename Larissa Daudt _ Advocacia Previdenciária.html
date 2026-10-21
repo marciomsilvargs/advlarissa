@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Larissa Daudt | Advocacia Previdenciária</title>
-<meta name="description" content="Conheça o atendimento jurídico previdenciário de Larissa Daudt e entre em contato para obter orientação sobre sua situação.">
+<title>Larissa Daudt | Há 14 anos contra as injustiças do INSS — Auxílio-Doença e Aposentadorias</title>
+<meta name="description" content="Há 14 anos atuando contra as injustiças do INSS. Descubra seus direitos: auxílio-doença, aposentadoria e planejamento com a Dra. Larissa Daudt.">
 <meta name="theme-color" content="#6B211F">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
-<meta property="og:title" content="Larissa Daudt | Advocacia Previdenciária">
-<meta property="og:description" content="Conheça o atendimento jurídico previdenciário de Larissa Daudt e entre em contato para obter orientação sobre sua situação.">
+<meta property="og:title" content="Larissa Daudt | Há 14 anos contra as injustiças do INSS">
+<meta property="og:description" content="Há 14 anos atuando contra as injustiças do INSS. Descubra seus direitos em auxílio-doença e aposentadorias.">
 <!-- PENDENTE: adicionar og:url, link canonical e og:image quando o domínio e a imagem de compartilhamento estiverem definidos. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -90,6 +90,17 @@ h3{font-size:1.4rem;line-height:1.2}
 .arch{background:var(--bordo);padding:12px;border-radius:999px 999px 0 0;aspect-ratio:4/5;display:flex}
 .arch-in{flex:1;background:var(--marfim);border-radius:999px 999px 0 0;display:grid;place-items:center;padding:0 7%}
 .arch-in .logo{width:100%}
+
+/* Badge e Estatísticas */
+.badge-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(107,33,31,0.07);color:var(--bordo);padding:7px 16px;border-radius:100px;font-size:.88rem;font-weight:600;letter-spacing:.01em;border:1px solid rgba(107,33,31,0.18);margin-bottom:18px}
+.badge-pill svg{width:16px;height:16px;stroke:var(--bordo);fill:none}
+.stats-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:24px;border-top:1px solid var(--bege);padding-top:20px}
+.stat-item{background:var(--branco);border:1px solid var(--bege);padding:14px 18px;border-radius:2px}
+.stat-item b{display:block;font-family:var(--serif);font-size:1.45rem;color:var(--bordo);line-height:1.2}
+.stat-item span{font-size:.88rem;color:var(--texto-suave)}
+@media (min-width:640px){
+  .stats-grid{grid-template-columns:repeat(3,1fr)}
+}
 
 /* Seções */
 section{position:relative}
@@ -274,11 +285,15 @@ html.js .rv.in{opacity:1;transform:none}
 <section class="hero" id="inicio">
   <div class="wrap">
     <div>
-      <h1>Orientação previdenciária com clareza, atenção e responsabilidade.</h1>
-      <p class="lead">Informação e acompanhamento jurídico para ajudar você a compreender seus direitos previdenciários e avaliar os caminhos adequados para o seu caso.</p>
+      <div class="badge-pill rv">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <span>Há 14 anos atuando contra as injustiças do INSS</span>
+      </div>
+      <h1>Descubra seus direitos com quem tem 14 anos de defesa previdenciária.</h1>
+      <p class="lead">Atendimento jurídico especializado e combativo para proteger você contra negativas indevidas da Previdência Social. Orientação clara e segura em <strong>Auxílio-Doença</strong>, <strong>Aposentadorias</strong> e planejamento previdenciário.</p>
       <div class="actions">
-        <a class="btn js-wa" href="#contato">Converse com a advogada</a>
-        <a class="btn btn-line" href="#atuacao">Conheça as áreas de atuação</a>
+        <a class="btn js-wa" href="#contato">Fale com a advogada</a>
+        <a class="btn btn-line" href="#atuacao">Descubra seus direitos</a>
       </div>
     </div>
     <!-- Moldura em arco com o logotipo. Para usar fotografia editorial, substitua o conteúdo de .arch-in por uma imagem (ex.: assets/hero.jpg, com width/height definidos). -->
@@ -298,19 +313,24 @@ html.js .rv.in{opacity:1;transform:none}
     </div>
     <div class="areas rv">
       <article class="area">
+        <div class="t"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7z"/></svg><h3>Auxílio-doença</h3></div>
+        <p>Defesa ativa contra perícias desfavoráveis e altas médicas indevidas do INSS. Atuação jurídica para restabelecer ou conceder o seu benefício por incapacidade.</p>
+        <a class="textlink js-wa" href="#contato" data-topic="auxílio-doença">Descubra seus direitos</a>
+      </article>
+      <article class="area">
         <div class="t"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 22h14M5 2h14M17 22v-4.17a2 2 0 0 0-.59-1.41L12 12l-4.41 4.42A2 2 0 0 0 7 17.83V22M7 2v4.17a2 2 0 0 0 .59 1.41L12 12l4.41-4.42A2 2 0 0 0 17 6.17V2"/></svg><h3>Aposentadorias</h3></div>
-        <p>Orientação sobre as regras de aposentadoria e sobre os requisitos que podem se aplicar à sua trajetória de contribuição.</p>
-        <a class="textlink js-wa" href="#contato" data-topic="aposentadorias">Conversar sobre este tema</a>
+        <p>Análise de requisitos, regras de transição e cálculo do valor correto. Garantia de que você não se aposente com prejuízo financeiro permanente.</p>
+        <a class="textlink js-wa" href="#contato" data-topic="aposentadorias">Descubra seus direitos</a>
       </article>
       <article class="area">
         <div class="t"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-2.12 6.36-6.36 2.12 2.12-6.36z"/></svg><h3>Planejamento previdenciário</h3></div>
-        <p>Análise do histórico de contribuições para avaliar cenários e se organizar com antecedência.</p>
+        <p>Diagnóstico detalhado do seu CNIS e histórico de trabalho para encontrar o melhor momento e o melhor benefício.</p>
         <a class="textlink js-wa" href="#contato" data-topic="planejamento previdenciário">Conversar sobre este tema</a>
       </article>
       <article class="area">
-        <div class="t"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7z"/></svg><h3>Benefícios por incapacidade</h3></div>
-        <p>Esclarecimentos sobre benefícios relacionados ao afastamento do trabalho por motivo de saúde.</p>
-        <a class="textlink js-wa" href="#contato" data-topic="benefícios por incapacidade">Conversar sobre este tema</a>
+        <div class="t"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><path d="m4.93 4.93 4.24 4.24M14.83 9.17l4.24-4.24M14.83 14.83l4.24 4.24M9.17 14.83l-4.24 4.24"/></svg><h3>BPC/LOAS</h3></div>
+        <p>Orientação sobre o Benefício de Prestação Continuada para pessoas idosas ou com deficiência em situação de vulnerabilidade.</p>
+        <a class="textlink js-wa" href="#contato" data-topic="BPC/LOAS">Conversar sobre este tema</a>
       </article>
       <article class="area">
         <div class="t"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><h3>Pensão por morte</h3></div>
@@ -318,14 +338,9 @@ html.js .rv.in{opacity:1;transform:none}
         <a class="textlink js-wa" href="#contato" data-topic="pensão por morte">Conversar sobre este tema</a>
       </article>
       <article class="area">
-        <div class="t"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><path d="m4.93 4.93 4.24 4.24M14.83 9.17l4.24-4.24M14.83 14.83l4.24 4.24M9.17 14.83l-4.24 4.24"/></svg><h3>BPC/LOAS</h3></div>
-        <p>Orientação sobre o Benefício de Prestação Continuada para pessoas idosas ou com deficiência, conforme os critérios legais.</p>
-        <a class="textlink js-wa" href="#contato" data-topic="BPC/LOAS">Conversar sobre este tema</a>
-      </article>
-      <article class="area">
-        <div class="t"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><circle cx="11.5" cy="14.5" r="2.5"/><path d="M13.3 16.3 15 18"/></svg><h3>Revisão e análise de benefícios</h3></div>
-        <p>Análise de benefícios já concedidos, para compreender como foram calculados e o que pode ser avaliado.</p>
-        <a class="textlink js-wa" href="#contato" data-topic="revisão e análise de benefícios">Conversar sobre este tema</a>
+        <div class="t"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><circle cx="11.5" cy="14.5" r="2.5"/><path d="M13.3 16.3 15 18"/></svg><h3>Revisão e negativa do INSS</h3></div>
+        <p>Combate a indeferimentos e cálculos errados feitos pelo INSS, buscando a correção do benefício e o pagamento dos retroativos.</p>
+        <a class="textlink js-wa" href="#contato" data-topic="revisão e negativa do INSS">Conversar sobre este tema</a>
       </article>
     </div>
   </div>
@@ -374,8 +389,21 @@ html.js .rv.in{opacity:1;transform:none}
       <h2 class="name">Larissa Daudt</h2>
       <p class="role">Advocacia Previdenciária</p>
       <p class="oab">OAB/RS 12.540</p>
-      <!-- TEXTO PROVISÓRIO: substituir pela apresentação profissional validada pela advogada. Não incluir tempo de experiência, títulos, especializações ou números sem comprovação. -->
-      <p class="lead measure">Larissa Daudt atua na área previdenciária, oferecendo orientação jurídica individualizada a quem precisa compreender seus direitos junto à Previdência Social.</p>
+      <p class="lead measure">Há 14 anos atuando firmemente contra as injustiças e negativas indevidas do INSS. Larissa Daudt oferece orientação jurídica individualizada, acolhedora e combativa para que trabalhadores e segurados descubram e conquistem seus direitos à Previdência Social.</p>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <b>14 Anos</b>
+          <span>Contra injustiças do INSS</span>
+        </div>
+        <div class="stat-item">
+          <b>Foco Principal</b>
+          <span>Auxílio-Doença & Aposentadorias</span>
+        </div>
+        <div class="stat-item">
+          <b>Atendimento</b>
+          <span>Presencial em Alvorada e Online</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -387,6 +415,10 @@ html.js .rv.in{opacity:1;transform:none}
       <h2>Perguntas frequentes</h2>
     </div>
     <div class="faq rv">
+      <div class="faq-item">
+        <h3 style="margin:0"><button class="faq-q" aria-expanded="false" aria-controls="a0" id="q0">O INSS negou meu auxílio-doença ou aposentadoria. O que posso fazer?<span class="pm" aria-hidden="true"></span></button></h3>
+        <div class="faq-a" id="a0" role="region" aria-labelledby="q0"><div><p>A negativa do INSS não é a palavra final. Frequentemente ocorrem falhas em perícias médicas ou desconsideração de períodos trabalhados. Com 14 anos de atuação combatendo essas injustiças, avaliamos seu processo para reverter a decisão administrativamente ou por meio de ação judicial, com direito ao recebimento de todos os valores retroativos.</p></div></div>
+      </div>
       <div class="faq-item">
         <h3 style="margin:0"><button class="faq-q" aria-expanded="false" aria-controls="a1" id="q1">Como saber se posso ter direito a um benefício previdenciário?<span class="pm" aria-hidden="true"></span></button></h3>
         <div class="faq-a" id="a1" role="region" aria-labelledby="q1"><div><p>Depende da situação de cada pessoa: tipo de benefício, idade, histórico de contribuições, atividade exercida e documentação disponível, entre outros fatores. Por isso, uma análise individual é o caminho mais seguro para entender as possibilidades, sem conclusões automáticas.</p></div></div>
@@ -491,7 +523,7 @@ html.js .rv.in{opacity:1;transform:none}
 /* ===== CONFIGURAÇÃO EDITÁVEL ===== */
 var CONFIG = {
   whatsappNumber: "5551992172072",
-  message: "Olá! Gostaria de orientação sobre uma situação previdenciária."
+  message: "Olá, Dra. Larissa! Gostaria de orientação para descobrir meus direitos no INSS."
 };
 /* ================================== */
 (function(){
