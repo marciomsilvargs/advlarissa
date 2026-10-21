@@ -1,0 +1,10 @@
+{
+  "name": "dra-larissa-previdenciaria",
+  "version": "1.0.0",
+  "description": "Website Dra. Larissa Daudt - Advocacia Previdenciária",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  }
+}
