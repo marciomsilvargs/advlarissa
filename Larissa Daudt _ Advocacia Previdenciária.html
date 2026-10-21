@@ -23,6 +23,7 @@
   --serif:"Cormorant Garamond","Iowan Old Style",Georgia,serif;
   --sans:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   --header-h:72px; --max:1160px; --pad:clamp(20px,5vw,40px);
+  --ease-out:cubic-bezier(0.23, 1, 0.32, 1);
   color-scheme:light;
   box-sizing:border-box;
   padding-top:env(safe-area-inset-top,0px);
@@ -51,12 +52,15 @@ h3{font-size:1.4rem;line-height:1.2}
 .measure{max-width:56ch}
 
 /* Botões */
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:13px 26px;border:1px solid var(--bordo);border-radius:2px;background:var(--bordo);color:var(--marfim);font:500 .95rem/1.2 var(--sans);text-decoration:none;cursor:pointer;transition:background-color .25s ease,color .25s ease,border-color .25s ease}
-.btn:hover{background:var(--bordo-escuro);border-color:var(--bordo-escuro)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:13px 26px;border:1px solid var(--bordo);border-radius:2px;background:var(--bordo);color:var(--marfim);font:500 .95rem/1.2 var(--sans);text-decoration:none;cursor:pointer;transition:transform .18s var(--ease-out),background-color .25s ease,color .25s ease,border-color .25s ease,box-shadow .25s ease;will-change:transform}
+@media (hover:hover) and (pointer:fine){
+  .btn:hover{background:var(--bordo-escuro);border-color:var(--bordo-escuro);transform:translateY(-2px);box-shadow:0 6px 18px rgba(107,33,31,0.18)}
+  .btn-line:hover{background:var(--bordo);color:var(--marfim);transform:translateY(-2px);box-shadow:0 6px 18px rgba(107,33,31,0.12)}
+  .btn-light:hover{background:#fff;border-color:#fff;transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,0.15)}
+}
+.btn:active{transform:scale(0.97) translateY(0)!important;box-shadow:none!important}
 .btn-line{background:transparent;color:var(--bordo)}
-.btn-line:hover{background:var(--bordo);color:var(--marfim)}
 .btn-light{background:var(--marfim);border-color:var(--marfim);color:var(--bordo)}
-.btn-light:hover{background:#fff;border-color:#fff}
 .btn-sm{min-height:44px;padding:10px 20px;font-size:.9rem}
 .textlink{color:var(--bordo);font-weight:500;font-size:.95rem;text-decoration:underline;text-decoration-color:var(--rose);text-underline-offset:5px;text-decoration-thickness:1px;transition:text-decoration-color .2s}
 .textlink:hover{text-decoration-color:var(--bordo)}
@@ -85,15 +89,40 @@ h3{font-size:1.4rem;line-height:1.2}
 .hero h1{margin-bottom:20px}
 .hero .lead{margin-bottom:30px;max-width:50ch}
 .actions{display:flex;flex-direction:column;gap:12px}
-.arch-wrap{justify-self:center;width:min(100%,340px);position:relative;padding:12px}
+.arch-wrap{justify-self:center;width:min(100%,340px);position:relative;padding:12px;will-change:transform,opacity}
 .arch-wrap::before{content:"";position:absolute;inset:0;border:1px solid var(--rose);border-radius:999px 999px 0 0}
 .arch{background:var(--bordo);padding:12px;border-radius:999px 999px 0 0;aspect-ratio:4/5;display:flex}
 .arch-in{flex:1;background:var(--marfim);border-radius:999px 999px 0 0;display:grid;place-items:center;padding:0 7%}
 .arch-in .logo{width:100%}
 
+/* Animações e Micro-interações da Hero */
+@keyframes heroFadeUp{
+  0%{opacity:0;transform:translateY(22px)}
+  100%{opacity:1;transform:translateY(0)}
+}
+@keyframes archEnter{
+  0%{opacity:0;transform:translateY(26px) scale(0.95)}
+  100%{opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes archFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+@keyframes badgeShimmer{
+  0%{transform:translateX(-130%) skewX(-20deg)}
+  35%,100%{transform:translateX(250%) skewX(-20deg)}
+}
+.hero-enter-1{opacity:0;animation:heroFadeUp .75s var(--ease-out) .05s forwards}
+.hero-enter-2{opacity:0;animation:heroFadeUp .85s var(--ease-out) .16s forwards}
+.hero-enter-3{opacity:0;animation:heroFadeUp .9s var(--ease-out) .28s forwards}
+.hero-enter-4{opacity:0;animation:heroFadeUp .9s var(--ease-out) .40s forwards}
+.hero-enter-arch{opacity:0;animation:archEnter 1.15s var(--ease-out) .2s forwards}
+.hero-enter-arch .arch{animation:archFloat 7s ease-in-out 1.4s infinite alternate}
+
 /* Badge e Estatísticas */
-.badge-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(107,33,31,0.07);color:var(--bordo);padding:7px 16px;border-radius:100px;font-size:.88rem;font-weight:600;letter-spacing:.01em;border:1px solid rgba(107,33,31,0.18);margin-bottom:18px}
-.badge-pill svg{width:16px;height:16px;stroke:var(--bordo);fill:none}
+.badge-pill{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:8px;background:rgba(107,33,31,0.07);color:var(--bordo);padding:7px 16px;border-radius:100px;font-size:.88rem;font-weight:600;letter-spacing:.01em;border:1px solid rgba(107,33,31,0.18);margin-bottom:18px}
+.badge-pill::after{content:"";position:absolute;top:0;left:0;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(217,145,127,0.38),transparent);animation:badgeShimmer 6s ease-in-out 1.2s infinite;pointer-events:none}
+.badge-pill svg{width:16px;height:16px;stroke:var(--bordo);fill:none;flex:none}
 .stats-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:24px;border-top:1px solid var(--bege);padding-top:20px}
 .stat-item{background:var(--branco);border:1px solid var(--bege);padding:14px 18px;border-radius:2px}
 .stat-item b{display:block;font-family:var(--serif);font-size:1.45rem;color:var(--bordo);line-height:1.2}
@@ -244,6 +273,8 @@ html.js .rv.in{opacity:1;transform:none}
   html{scroll-behavior:auto}
   *,*::before,*::after{transition:none!important;animation:none!important}
   html.js .rv{opacity:1;transform:none}
+  .hero-enter-1,.hero-enter-2,.hero-enter-3,.hero-enter-4,.hero-enter-arch{opacity:1!important;transform:none!important;animation:none!important}
+  .hero-enter-arch .arch{transform:none!important;animation:none!important}
 }
 </style>
 </head>
@@ -285,19 +316,19 @@ html.js .rv.in{opacity:1;transform:none}
 <section class="hero" id="inicio">
   <div class="wrap">
     <div>
-      <div class="badge-pill rv">
+      <div class="badge-pill hero-enter-1">
         <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         <span>Há 14 anos atuando contra as injustiças do INSS</span>
       </div>
-      <h1>Descubra seus direitos com quem tem 14 anos de defesa previdenciária.</h1>
-      <p class="lead">Atendimento jurídico especializado e combativo para proteger você contra negativas indevidas da Previdência Social. Orientação clara e segura em <strong>Auxílio-Doença</strong>, <strong>Aposentadorias</strong> e planejamento previdenciário.</p>
-      <div class="actions">
+      <h1 class="hero-enter-2">Descubra seus direitos com quem tem 14 anos de defesa previdenciária.</h1>
+      <p class="lead hero-enter-3">Atendimento jurídico especializado e combativo para proteger você contra negativas indevidas da Previdência Social. Orientação clara e segura em <strong>Auxílio-Doença</strong>, <strong>Aposentadorias</strong> e planejamento previdenciário.</p>
+      <div class="actions hero-enter-4">
         <a class="btn js-wa" href="#contato">Fale com a advogada</a>
         <a class="btn btn-line" href="#atuacao">Descubra seus direitos</a>
       </div>
     </div>
     <!-- Moldura em arco com o logotipo. Para usar fotografia editorial, substitua o conteúdo de .arch-in por uma imagem (ex.: assets/hero.jpg, com width/height definidos). -->
-    <div class="arch-wrap" aria-hidden="true">
+    <div class="arch-wrap hero-enter-arch" aria-hidden="true">
       <div class="arch"><div class="arch-in"><span class="logo"></span></div></div>
     </div>
   </div>
